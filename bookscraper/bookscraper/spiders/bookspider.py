@@ -38,10 +38,17 @@ class BookspiderSpider(scrapy.Spider):
         for book in books:
             # Yielding key elements of the page
             yield {
-                # css tags
+                # css tags; <h3><a href="in-her-wake_980/index.html" title="In Her Wake">In Her Wake</a></h3>
                 "name" : book.css('h3 a::text').get(),
-                # class tags
+                # class tags;
+                #     <div class ="product_price">
+                #         <p class ="price_color">£51.77</p>
+                #         ...
+                #     </div>
                 "price" : book.css('.product_price .price_color::text').get(),
+                # <h3>
+                #     <a href="catalogue/a-light-in-the-attic_1000/index.html" title="A Light in the Attic">A Light in the ...</a>
+                # </h3>
                 "url" : book.css('h3 a').attrib['href']
             }
 
