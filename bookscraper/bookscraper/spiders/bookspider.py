@@ -1,3 +1,21 @@
+"""
+    Description: This is the primary part of the Spider in the Scrapy architecture
+    Date: 2023/11/29
+    Author:
+    Version: 0.1b
+    Revision History:
+        - 2023/11/29: v. 0.1b, basic parser yielding fields using css selectors; follow href anchor
+                      to visit all pages from the starting page
+        - 2023/7/11: v. 0.1a the initial version
+    Reference:
+            1) https://youtu.be/mBoX_JCKZTE?si=NdyjlT7fLS1qAUec
+    Notes: In order to improve the architecture based simply on requests and BeautifulSoup
+           Scrapy framework is introduced. And the tutorial shown in Reference 1) included
+           comprehensive materials to go through the entire process from development to
+           deployment
+    ToDo's  :
+        -
+"""
 import scrapy
 
 
@@ -15,8 +33,10 @@ class BookspiderSpider(scrapy.Spider):
         # We may use the interactive environment in 'Scrapy shell' to experiment the
         # CSS selector before actually writing code here
         books = response.css("article.product_pod")
+
         # Extract book information one book by another
         for book in books:
+            # Yielding key elements of the page
             yield {
                 # css tags
                 "name" : book.css('h3 a::text').get(),
