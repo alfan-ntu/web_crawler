@@ -149,7 +149,11 @@ Out[9]: 'A Light in the ...'
   
     > response.css('li.next a ::attr(href)').get()
     
-  -   
+  - 'Scrapy shell' is very important for composing the selector statement  
+  - Configure the output from running 'scrapy crawl <spider> ' by adding --logfile <logfile> -O <output_file>
+       
+    > scrapy crawl bookspider --logfile bookspider.log -O bookdetails.csv
+  
 
 
      

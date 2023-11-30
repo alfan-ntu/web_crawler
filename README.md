@@ -24,7 +24,9 @@ pip install requests
 pip install beautifulsoup4 
 ```
 - Scrapy: A more powerful and versatile package which handles requests and responses asynchronously. In other words, it can handle requests/response in parallel
-
+```commandline
+pip install scrapy 
+```
 ### Notes
 - Some web-servers might prohibit requests from an automation application. Thus packing a custom agent header is a must in this case to avoid '403 Forbidden' response. 
 ```
@@ -34,5 +36,6 @@ pip install beautifulsoup4
 
 ### Reference
 1. Web Crawling With Python: https://www.scrapingbee.com/blog/crawling-python/
-2. 
+2. Scrapy Course: https://youtu.be/mBoX_JCKZTE?si=kTGIkal461R07UIt
+
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/WebCrawler_logotype_1995.svg/2560px-WebCrawler_logotype_1995.svg.png" width="150"> 

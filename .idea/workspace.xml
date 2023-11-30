@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Wrapping up basic scraper before digging into details of each selected book">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Added markup code for selected field">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/bookspider.log" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,11 +33,11 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="stock_price_crawler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="web_crawler" />
@@ -82,7 +85,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701256695452</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added markup code for selected field">
+      <created>1701258083791</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701258083791</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -102,6 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Wrapping up basic scraper before digging into details of each selected book" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wrapping up basic scraper before digging into details of each selected book" />
+    <MESSAGE value="Added markup code for selected field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added markup code for selected field" />
   </component>
 </project>
