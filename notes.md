@@ -86,14 +86,14 @@ Note that Downloader middleware and Spider middleware are implemented in the fil
 - 2023/11/16
     - Encountered '403 Forbidden' response from a simple HTTP request, requests.get(url).
       This means the server rejects the simple bot-like request.
-      Fix in download_url(self, url) by adding a request header
+      Fix in download_url(self, url) by adding a request header when composing an HTML request. See example download_url in basic_crawler.py which uses the package 'requests'.
 ```
       headers={'User-Agent': 'Mozilla/5.0'}
       html = requests.get(url, headers=headers).text
 ```
 
 - 2023/11/17
-    - In order to crawl the pages in parallel, we need to switch the basic framework according the article, [Web Crawling With Python](https://www.scrapingbee.com/blog/crawling-python/)
+    - In order to crawl the pages in parallel, we need to switch the basic framework according the article, [Web Crawling With Python](https://www.scrapingbee.com/blog/crawling-python/); Quote: "One of the advantages of Scrapy is that requests are scheduled and handled asynchronously. This means that Scrapy can send another request before the previous one has completed or do some other work in between."
   
 - 2023/11/20
   - Open issue: In some cases, we may run into websites that require us to execute JavaScript code to render all the HTML.  
@@ -125,7 +125,7 @@ Note that Downloader middleware and Spider middleware are implemented in the fil
 In [1]: fetch('https://books.toscrape.com/')
 ```
 ___
-Combining both this shell functions with the inspection of the web page we're querying or scraping, it'll be easy to locate and fetch the content of interest.
+Combining both this shell functions with the inspection of the web page we're querying or scraping from, it'll be easy to locate and fetch the content of interest.
 
 ```commandline
 In [6]: books = response.css('article.product_pod')
@@ -140,6 +140,10 @@ In [8]: book = books[0]
 2023-11-29 11:44:23 [asyncio] DEBUG: Using selector: SelectSelector
 In [9]: book.css('h3 a::text').get()
 Out[9]: 'A Light in the ...'
+
+2023-12-12 21:11:07 [asyncio] DEBUG: Using selector: SelectSelector
+In [11]: book.css('p.price_color::text').get()
+Out[11]: '£50.10'
 ```
 
 - 2023/11/27 ~ 2023/12/1(continued)
@@ -147,14 +151,24 @@ Out[9]: 'A Light in the ...'
      
     > response.css('li.next a').attrib['href']
   
+    or
+
     > response.css('li.next a ::attr(href)').get()
     
   - 'Scrapy shell' is very important for composing the selector statement  
   - Configure the output from running 'scrapy crawl <spider> ' by adding --logfile <logfile> -O <output_file>
        
     > scrapy crawl bookspider --logfile bookspider.log -O bookdetails.csv
+    
+    or   
   
+    > scrapy crawl bookspider --logfile bookspider.log -O bookdetaails.json
 
+  - Instead of yielding a long dictionary from a response parser callback function, we can define item prototype in Items.py. Items.py can also perform simple data serialization functions, such as removing non-digits from string, on specified fields. Refer to the function serialize_price() in items.py
+  
+    > price_excl_tax = scrapy.Field(serializer=serialize_price)
 
-     
+  - On the other hand, pipelines.py, provides a single interface for handling different item types. Whatever written in pipeline.py, remember to enable ITEM_PIPELINES in settings.py. This is an important part of data processing before storing data captured from HTML response to Database.
 
+- 2023/12/11~2023/12/17
+  - Resuming to this project after business travel to China. Continued Part 6-Cleaning Data with Item Pipelines.
