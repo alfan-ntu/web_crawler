@@ -2,10 +2,11 @@
     Description: This is the primary part of the Spider in the Scrapy architecture
     Date: 2023/12/12
     Author:
-    Version: 0.1d
+    Version: 0.1e
     Revision History:
+        - 2023/12/xx: v. 0.1e, added randomized user-agent information
         - 2023/12/12: v. 0.1d, fixed books item bug and return item object
-        - 2023/11/30: v. 0.1c, add parsing function of book details pages
+        - 2023/11/30: v. 0.1c, added parsing function of book details pages
         - 2023/11/29: v. 0.1b, basic parser yielding fields using css selectors; follow href anchor
                       to visit all pages from the starting page
         - 2023/7/11: v. 0.1a the initial version
@@ -20,6 +21,7 @@
 """
 import scrapy
 from ..items import BookItem
+import random
 
 
 class BookspiderSpider(scrapy.Spider):
@@ -30,6 +32,24 @@ class BookspiderSpider(scrapy.Spider):
     # there could be more than one URL's in this list so that the spider
     # crawls the urls within this list
     start_urls = ["https://books.toscrape.com"]
+    #
+    # add a customized setting specific to this spider; this is another way of configuration
+    # compared to that setting specified in settings.py
+    #
+    # custom_settings = {
+    #     'FEEDS': {
+    #         'booksdata.json': {'format': 'json'}
+    #     }
+    # }
+    # Several ways to adjust user-agent. Refer to diary of 2023/12/11~2023/12/17 in notes.md
+    # for details.
+    user_agent_list = [
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.1 Safari/605.1.15",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.246",
+        "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36"
+    ]
 
     def parse(self, response):
         """
@@ -48,13 +68,17 @@ class BookspiderSpider(scrapy.Spider):
         for book in books:
             # go deeper to details of each book
             relative_url = book.css('h3 a ::attr(href)').get()
-            print(f'Book URL: {relative_url}')
+            # print(f'Book URL: {relative_url}')
             if 'catalogue/' not in relative_url:
                 book_url = 'https://books.toscrape.com/catalogue/' + relative_url
             else:
                 book_url = 'https://books.toscrape.com/' + relative_url
-
-            yield response.follow(book_url, callback=self.parse_book_page)
+            # submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
+            # if more complicated ways to deal with dynamic user-agent information in middlewares.py
+            yield response.follow(book_url,
+                                  callback=self.parse_book_page,
+                                  # headers={"User-Agent": self.user_agent_list[random.randint(0, len(self.user_agent_list)-1)]}
+                                  )
         #
         # Process the next page button to continue the crawling until no more pages left
         #
@@ -64,16 +88,21 @@ class BookspiderSpider(scrapy.Spider):
                 next_page_url = 'https://books.toscrape.com/catalogue/' + next_page
             else:
                 next_page_url = 'https://books.toscrape.com/' + next_page
-            # response.follow just returns a new Request instance
-            yield response.follow(next_page_url, callback=self.parse)
+            # response.follow just returns a new Request instance with/without a spoofed user-agent
+            print(f'Visit page: {next_page_url}')
+            yield response.follow(next_page_url,
+                                  callback=self.parse,
+                                  # headers={"User-Agent": self.user_agent_list[random.randint(0, len(self.user_agent_list)-1)]}
+                                  )
 
     def parse_book_page(self, response):
         """
-        Parse the book details page
+        Parse the book details page and compose an item object
 
         :param response:
         :return: book details record object
         """
+        # print(f'Response: {response}; user-agent: {response.request.headers["User-Agent"]}')
         print(f'Response: {response}')
         # Fetch the table in the book details page
         table_rows = response.css("table tr")

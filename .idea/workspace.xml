@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Added parser parsing book details pages">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1d: added item object, data preprocessing function in pipelines.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/bookspider.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" afterDir="false" />
@@ -101,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701322216028</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v. 0.1d: added item object, data preprocessing function in pipelines.py">
+      <created>1702400335892</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702400335892</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -123,6 +129,7 @@
     <MESSAGE value="Wrapping up basic scraper before digging into details of each selected book" />
     <MESSAGE value="Added markup code for selected field" />
     <MESSAGE value="Added parser parsing book details pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added parser parsing book details pages" />
+    <MESSAGE value="v. 0.1d: added item object, data preprocessing function in pipelines.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="v. 0.1d: added item object, data preprocessing function in pipelines.py" />
   </component>
 </project>
