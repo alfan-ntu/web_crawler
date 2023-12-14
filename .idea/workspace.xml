@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1d: added item object, data preprocessing function in pipelines.py">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Added parser parsing book details pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +19,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />

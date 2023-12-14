@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = "bookscraper.spiders"
 
 # Define operation parameters for Middleware operations
 # Specifically for the API operations provided by ScrapeOps.io
-SCRAPEOPS_API_KEY = '2bb9eaa3-b008-48df-98fa-6b175af37535'
+SCRAPEOPS_API_KEY = 'ScrapeOps API Key Here'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
