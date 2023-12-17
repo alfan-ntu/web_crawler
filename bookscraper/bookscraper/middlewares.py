@@ -161,8 +161,10 @@ class ScrapeOpsFakeUserAgentMiddleware:
 
     def _get_user_agents_list(self):
         """
-        Sending request to ScrapeOps API endpoint with the API Key
+        Sending requests to ScrapeOps API endpoint with the API Key to get
+        a specified number of user-agents from ScrapeOps
         :return: a list of dynamically generated user-agents information
+        Note: Follow https://scrapeops.io/app/headers for an example to get a user-agent list
         """
         payload = {'api_key': self.scrapeops_api_key}
         if self.scrapeops_num_results is not None:
@@ -192,6 +194,8 @@ class ScrapeOpsFakeUserAgentMiddleware:
             self.scrapeops_fake_user_agents_active = True
 
     def process_request(self, request, spider):
+        # Called for each request that goes through the downloader
+        # middleware.
         """
         Processing the request with randomly picked user-agent put in the request header
         :param request:
@@ -200,5 +204,81 @@ class ScrapeOpsFakeUserAgentMiddleware:
         """
         random_user_agent = self._get_random_user_agent()
         request.headers['User-Agent'] = random_user_agent
-        print("********** NEW HEADER ATTACHED **********")
-        print(request.headers['User-Agent'])
+        # For debugging purpose
+        # print("********** NEW HEADER ATTACHED **********")
+        # print(request.headers['User-Agent'])
+
+
+class ScrapeOpsFakeBrowseHeaderAgentMiddleware:
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler.settings)
+
+    def __init__(self, settings):
+        """
+        Initialize the ScrapeOpsFakeUserAgentMiddleware class by reading the configuration parameters from
+        settings.py. Remember to enable this in the section DOWNLOADER_MIDDLEWARES in settings.py and assign
+        proper priority level
+        :param settings:
+        """
+        self.scrapeops_api_key = settings.get('SCRAPEOPS_API_KEY')
+        self.scrapeops_endpoint = settings.get('SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT', 'http://headers.scrapeops.io/v1/user-agents?')
+        self.scrapeops_fake_browser_headers_active = settings.get('SCRAPEOPS_FAKE_USER_AGENT_ENABLED', False)
+        self.scrapeops_num_results = settings.get('SCRAPEOPS_NUM_RESULTS')
+        self.headers_list = []
+        self._get_headers_list()
+        self._scrapeops_fake_browser_headers_enabled()
+
+    def _get_headers_list(self):
+        """
+        Sending requests to ScrapeOps API endpoint with the API Key to get
+        a header list from ScrpeOps website
+        :return: a list of dynamically generated header information
+        Note: Follow https://scrapeops.io/app/headers for an example to get a whole header list
+        """
+        payload = {'api_key': self.scrapeops_api_key}
+        if self.scrapeops_num_results is not None:
+            payload['num_results'] = self.scrapeops_num_results
+        response = requests.get(self.scrapeops_endpoint, params=urlencode(payload))
+        json_response = response.json()
+        self.headers_list = json_response.get('result', [])
+
+    def _get_random_browser_header(self):
+        """
+        Generating a random index to fetch the correspondent header from the list
+        self.header_list
+        :return: randomly picked header to spoof the webserver with different identity
+        """
+        random_index = randint(0, len(self.headers_list)-1)
+        return self.headers_list[random_index]
+
+    def _scrapeops_fake_browser_headers_enabled(self):
+        if self.scrapeops_fake_browser_headers_active is None or\
+           self.scrapeops_fake_browser_headers_active=='' or\
+           self.scrapeops_fake_browser_headers_active==False:
+            self.scrapeops_fake_browser_headers_active=False
+        else:
+            self.scrapeops_fake_browser_headers_active=True
+
+    def process_request(self, request, spider):
+        # Called for each request that goes through the downloader
+        # middleware.
+        """
+        Processing the request with randomly picked browser header
+        :param request:
+        :param spider:
+        :return:
+        """
+        random_browser_header = self._get_random_browser_header()
+
+        request.headers['accept-language'] = random_browser_header['accept-language']
+        request.headers['sec-fetch-user'] = random_browser_header['sec-fetch-user']
+        request.headers['sec-fetch-mod'] = random_browser_header['sec-fetch-mod']
+        request.headers['sec-fetch-site'] = random_browser_header['sec-fetch-site']
+        request.headers['sec-ch-ua-platform'] = random_browser_header['sec-ch-ua-platform']
+        request.headers['sec-ch-ua-mobile'] = random_browser_header['sec-ch-ua-mobile']
+        request.headers['sec-ch-ua'] = random_browser_header['sec-ch-ua']
+        request.headers['accept'] = random_browser_header['accept']
+        request.headers['user-agent'] = random_browser_header['user-agent']
+        request.headers['upgrade-insecure-requests'] = random_browser_header['upgrade-insecure-requests']

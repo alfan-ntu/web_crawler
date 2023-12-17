@@ -42,7 +42,8 @@ class BookspiderSpider(scrapy.Spider):
     #     }
     # }
     # Several ways to adjust user-agent. Refer to diary of 2023/12/11~2023/12/17 in notes.md
-    # for details.
+    # for details. This list will be used for randomly picking any one of them when composing
+    # an HTML request in either response.follow(book_url,... or response.follow(next_page_url,
     user_agent_list = [
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",

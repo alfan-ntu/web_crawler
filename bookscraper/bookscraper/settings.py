@@ -21,7 +21,9 @@ NEWSPIDER_MODULE = "bookscraper.spiders"
 # Specifically for the API operations provided by ScrapeOps.io
 SCRAPEOPS_API_KEY = 'ScrapeOps API Key Here'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
+SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent;
@@ -30,8 +32,8 @@ SCRAPEOPS_NUM_RESULTS = 50
 #USER_AGENT = "bookscraper (+http://www.yourdomain.com)"
 # USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
 
-# Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# Obey robots.txt rules; Change it from default value True to False
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -66,7 +68,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
    # "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
-   "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+   # "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+   "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
 }
 
 # Enable or disable extensions
