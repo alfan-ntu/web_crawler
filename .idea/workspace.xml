@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1f: added rotating proxy capability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/notes.md" beforeDir="false" afterPath="$PROJECT_DIR$/notes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702832846636</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="v. 0.1f: added rotating proxy capability">
+      <created>1702879201196</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1702879201196</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -146,6 +152,7 @@
     <MESSAGE value="v. 0.1d: added item object, data preprocessing function in pipelines.py" />
     <MESSAGE value="v. 0.1e: added several ways to adjust user-agent to spoof the webserver with different levels of complexity of user-agent information (re-uploaded)" />
     <MESSAGE value="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests" />
-    <option name="LAST_COMMIT_MESSAGE" value="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests" />
+    <MESSAGE value="v. 0.1f: added rotating proxy capability" />
+    <option name="LAST_COMMIT_MESSAGE" value="v. 0.1f: added rotating proxy capability" />
   </component>
 </project>

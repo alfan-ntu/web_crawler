@@ -190,4 +190,5 @@ Out[11]: '£50.10'
     ```
     pip install scrapeops-scrapy-proxy-sdk
     ```
+  - **Part 10: Run Spiders in Cloud with Scrapyd** Deployment/Scheduling/Monitoring Scrapyd
   

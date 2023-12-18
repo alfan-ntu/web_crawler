@@ -37,5 +37,6 @@ pip install scrapy
 ### Reference
 1. Web Crawling With Python: https://www.scrapingbee.com/blog/crawling-python/
 2. Scrapy Course: https://youtu.be/mBoX_JCKZTE?si=kTGIkal461R07UIt
+3. WebCrawler: https://www.wikidata.org/wiki/Q2553325
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/WebCrawler_logotype_1995.svg/2560px-WebCrawler_logotype_1995.svg.png" width="150"> 
