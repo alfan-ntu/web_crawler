@@ -19,12 +19,37 @@ NEWSPIDER_MODULE = "bookscraper.spiders"
 
 # Define operation parameters for Middleware operations
 # Specifically for the API operations provided by ScrapeOps.io
-SCRAPEOPS_API_KEY = 'ScrapeOps API Key Here'
+SCRAPEOPS_API_KEY = ''
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENABLED = True
 SCRAPEOPS_NUM_RESULTS = 50
+#
+# This is necessary only when a rotating proxy method to spoof the website is implemented
+# Disable it for now until it is absolutely necessary for other projects.
+# Free proxy server list can be found on https://geonode.com/free-proxy-list
+#
+# ROTATING_PROXY_LIST = [
+#    'proxy1.com:8000',
+#    'proxy2.com:8031',
+#    'proxy3.com:8032',
+# ]
+#
+# Or listing all the proxies statically in a proxy list text file
+#
+# ROTATING_PROXY_LIST_PATH = '......'
+#
+# In case smartproxy.com server is used, remember to enable the following parameters
+#
+# PROXY_USER = 'xxxx'
+# PROXY_PASSWORD = 'XXXXXXX'
+# PROXY_ENDPOINT = 'gate.smartproxy.com'
+# PROXY_PORT = '7000'
+#
+#  Or use ScrapeOps' proxy SDK
+SCRAPEOPS_PROXY_ENABLED = True
+SCRAPEOPS_PROXY_SETTINGS = {'country': 'us'}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent;
 # Disable this either a changing user-agent is not necessary or other mechanism to manipulate the
@@ -70,6 +95,8 @@ DOWNLOADER_MIDDLEWARES = {
    # "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
    # "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
    "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
+   # "rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
+   # "bookscraper.middlewares.MyProxyMiddleware": 350
 }
 
 # Enable or disable extensions

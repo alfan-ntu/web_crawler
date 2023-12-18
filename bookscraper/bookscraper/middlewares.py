@@ -3,10 +3,11 @@
                  processing and to process the requests and items that are generated from
                  spiders
 
-    Date: 2023/12/14
+    Date: 2023/12/18
     Author:
-    Version: 0.1e
+    Version: 0.1f
     Revision History:
+        - 2023/12/18: v. 0.1f, added rotating proxy test code
         - 2023/12/14: v. 0.1e, modified the middlewares.py template first time to enable scrape
                               functionalities from a third party, ScrapeOps
 
@@ -282,3 +283,34 @@ class ScrapeOpsFakeBrowseHeaderAgentMiddleware:
         request.headers['accept'] = random_browser_header['accept']
         request.headers['user-agent'] = random_browser_header['user-agent']
         request.headers['upgrade-insecure-requests'] = random_browser_header['upgrade-insecure-requests']
+
+
+#
+# Class MyProxyMiddleware is necessary only when we need to rotate the proxies to change spoof the website
+# with changing IP address via proxy servers, e.g. smartproxy.com. No need to comment out this class
+# as long as we do not enable it in DOWNLOADER_MIDDWARES in settings.py
+#
+# Note:
+#   1) Remember to enable this in settings.py
+#   2) Haven't yet verified this part of code due to security and smartproxy.com payment concern
+import base64
+
+
+class MyProxyMiddleware:
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler.settings)
+
+    def __init__(self, settings):
+        self.user = settings.get('PROXY_USER')
+        self.password = settings.get('PROXY_PASSWORD')
+        self.endpoint = settings.get('PROXY_ENDPOINT')
+        self.port = settings.get('PROXY_PORT')
+
+    def process_request(self, request, spider):
+        user_credentials = '{user}:{passw}'.format(user=self.user, passw=self.password)
+        basic_authentication = 'Basic ' + base64.b64encode(user_credentials.encode()).decode()
+        host = 'http://{endpoint}:{port}'.format(endpoint=self.endpoint, port=self.port)
+        request.meta['proxy']=host
+        request.headers['Proxy-Authorization']=basic_authentication

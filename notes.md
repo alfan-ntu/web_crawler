@@ -181,3 +181,13 @@ Out[11]: '£50.10'
     - Or apply 3rd party API to get externally generated user-agent in middlewares.py, e.g. [ScrapeOps](scrapeops.io) provides API to create user-agent's on-the-fly, instead of listing them in the spider.py file. A description in details can be found in [Scrapy Playbook](https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-8-fake-headers-user-agents/#how-to-set-a-fake-user-agent-in-scrapy). Remember to enable the modified middlewares.py in settings.py by un-comment 'DOWNLOADER_MIDDLEWARES'
   - **Part 8: Fake User-Agents & Browser Headers** (continued): Work-around to deal with anti-robot policy if robots.txt is set on the Webserver. 
   - In addition to change the user-agent part of a header in the request, we can apply ScrapeOps API to create a whole new header section, which is implemented as a class ScrapeOpsFakeBrowseHeaderAgentMiddleware in middlewares.py . 
+- 2023/12/18~2023/12/24
+  - **Part 9: Rotating Proxies & Proxy APIs**: Changing user-agents or even request headers might not be sophisticated enough if many requests with different user-agents, request headers are sent from the same IP address. This is why proxies are needed for the scraping client to hide its identity. However, scraping or visiting websites through proxy servers might introduce security issues, not to mention stability and performance issues. Went through the youtube materials [Part 9](https://www.youtube.com/watch?v=mBoX_JCKZTE&t=9612s) without actually applied them unless necessary later for other projects. Rotating proxy servers are provided by different service providers, either free(https://geonode.com/free-proxy-list) or paid(smartproxy.com) services.
+    - Alternative 1: Use ROTATING_PROXY_LIST in settings.py in a static way. Experienced stability and performance issue while testing.
+    - Alternative 2: Use paid proxy service and implement a dedicated class, e.g. MyProxyMiddleware, in middlewares.py
+    - Alternative 3: Get proxy service by ScrapeOps in spider.py. get_proxy_url() function needs to be implemented in spider.py to pass API KEY and destination URL to it and get a proxy route to the destination. Refer to preparations to run response.follow() and allowed_domains in spider.py for details.
+    - Alternative 4: Use proxy SDK provided by ScrapeOps by installing proxy-sdk package and add rotating proxy method in middlewares.py
+    ```
+    pip install scrapeops-scrapy-proxy-sdk
+    ```
+  

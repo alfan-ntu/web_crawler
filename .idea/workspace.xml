@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1e: added several ways to adjust user-agent to spoof the webserver with different levels of complexity of user-agent information (re-uploaded)">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" afterDir="false" />
@@ -114,7 +114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702526533569</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests">
+      <created>1702832846636</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702832846636</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -138,6 +145,7 @@
     <MESSAGE value="Added parser parsing book details pages" />
     <MESSAGE value="v. 0.1d: added item object, data preprocessing function in pipelines.py" />
     <MESSAGE value="v. 0.1e: added several ways to adjust user-agent to spoof the webserver with different levels of complexity of user-agent information (re-uploaded)" />
-    <option name="LAST_COMMIT_MESSAGE" value="v. 0.1e: added several ways to adjust user-agent to spoof the webserver with different levels of complexity of user-agent information (re-uploaded)" />
+    <MESSAGE value="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests" />
+    <option name="LAST_COMMIT_MESSAGE" value="v. 0.1e: added middleware ScrapeOpsFakeBrowseHeaderAgentMiddleware class to get browserheaders from ScrapeOps and randomly pick one for HTML requests" />
   </component>
 </project>

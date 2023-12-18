@@ -1,10 +1,11 @@
 """
     Description: This is the primary part of the Spider in the Scrapy architecture
-    Date: 2023/12/12
+    Date: 2023/12/18
     Author:
-    Version: 0.1e
+    Version: 0.1f
     Revision History:
-        - 2023/12/xx: v. 0.1e, added randomized user-agent information
+        - 2023/12/18: v. 0.1f, added rotating proxy sample code
+        - 2023/12/17: v. 0.1e, added randomized user-agent information
         - 2023/12/12: v. 0.1d, fixed books item bug and return item object
         - 2023/11/30: v. 0.1c, added parsing function of book details pages
         - 2023/11/29: v. 0.1b, basic parser yielding fields using css selectors; follow href anchor
@@ -22,13 +23,27 @@
 import scrapy
 from ..items import BookItem
 import random
+from urllib.parse import urlencode
+
+
+API_KEY = 'xxxxx-xxxx-xxxxx-xxxxx-xxxxxx'
+
+
+def get_proxy_url(url, enable_proxy=False):
+    if enable_proxy:
+        payload = {'api_key': API_KEY, 'url':url}
+        proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
+    else:
+        proxy_url = url
+    return proxy_url
 
 
 class BookspiderSpider(scrapy.Spider):
     name = "bookspider"
     # allowed_domains limits the spider from scrawling websites external to
-    # allowed_domain list
-    allowed_domains = ["books.toscrape.com"]
+    # allowed_domain list. The second item is necessary only when we implemented rotating
+    # proxy method through ScrapeOps API
+    allowed_domains = ["books.toscrape.com", "proxy.scrapeops.io"]
     # there could be more than one URL's in this list so that the spider
     # crawls the urls within this list
     start_urls = ["https://books.toscrape.com"]
@@ -52,6 +67,15 @@ class BookspiderSpider(scrapy.Spider):
         "Mozilla/5.0 (X11; CrOS x86_64 8172.45.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.64 Safari/537.36"
     ]
 
+    def start_request(self):
+        """
+        Scrapy looks for this subroutine to compose customized request,
+        only needed if we implement rotating proxy method and submit our requests via proxy and
+        worry if the very first request is blocked by the target server
+        :return:
+        """
+        yield scrapy.Request(url=get_proxy_url(self.start_urls[0]), callback=self.parse)
+
     def parse(self, response):
         """
         Callback function 'parse' to parse the HTML response per request
@@ -74,11 +98,14 @@ class BookspiderSpider(scrapy.Spider):
                 book_url = 'https://books.toscrape.com/catalogue/' + relative_url
             else:
                 book_url = 'https://books.toscrape.com/' + relative_url
-            # submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
+            # (1) submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
             # if more complicated ways to deal with dynamic user-agent information in middlewares.py
+            # (2) apply rotating proxy servers by uncomment meta={...}
+            book_url = get_proxy_url(book_url, False)
             yield response.follow(book_url,
                                   callback=self.parse_book_page,
-                                  # headers={"User-Agent": self.user_agent_list[random.randint(0, len(self.user_agent_list)-1)]}
+                                  # headers={"User-Agent": self.user_agent_list[random.randint(0, len(self.user_agent_list)-1)]},
+                                  # meta={"proxy": "http://username:password@gate.smartproxy.com:7000"}
                                   )
         #
         # Process the next page button to continue the crawling until no more pages left
@@ -91,9 +118,14 @@ class BookspiderSpider(scrapy.Spider):
                 next_page_url = 'https://books.toscrape.com/' + next_page
             # response.follow just returns a new Request instance with/without a spoofed user-agent
             print(f'Visit page: {next_page_url}')
+            # (1) submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
+            # if more complicated ways to deal with dynamic user-agent information in middlewares.py
+            # (2) apply rotating proxy servers by uncomment meta={...}
+            next_page_url = get_proxy_url(next_page_url, False)
             yield response.follow(next_page_url,
                                   callback=self.parse,
                                   # headers={"User-Agent": self.user_agent_list[random.randint(0, len(self.user_agent_list)-1)]}
+                                  # meta={"proxy": "http://username:password@gate.smartproxy.com:7000"}
                                   )
 
     def parse_book_page(self, response):
