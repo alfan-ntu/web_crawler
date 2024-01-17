@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = "bookscraper.spiders"
 
 # Define operation parameters for Middleware operations
 # Specifically for the API operations provided by ScrapeOps.io
-SCRAPEOPS_API_KEY = ''
+SCRAPEOPS_API_KEY = '2bb9eaa3-b008-48df-98fa-6b175af37535'
 SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/user-agents'
 SCRAPEOPS_FAKE_BROWSER_HEADER_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-headers'
 SCRAPEOPS_FAKE_USER_AGENT_ENABLED = True
@@ -58,7 +58,7 @@ SCRAPEOPS_PROXY_SETTINGS = {'country': 'us'}
 # USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
 
 # Obey robots.txt rules; Change it from default value True to False
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
