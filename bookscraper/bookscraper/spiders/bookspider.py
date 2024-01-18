@@ -74,6 +74,7 @@ class BookspiderSpider(scrapy.Spider):
         worry if the very first request is blocked by the target server
         :return:
         """
+        # arrange proxy and register callback parse function on receiving the response
         yield scrapy.Request(url=get_proxy_url(self.start_urls[0]), callback=self.parse)
 
     def parse(self, response):
