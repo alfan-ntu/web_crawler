@@ -189,7 +189,7 @@ class ScrapeOpsFakeUserAgentMiddleware:
         configurations in settings.py
         :return:
         """
-        if self.scrapeops_api_key is None or self.scrapeops_api_key=='' or self.scrapeops_fake_user_agents_active==False:
+        if self.scrapeops_api_key is None or self.scrapeops_api_key=='' or self.scrapeops_fake_user_agents_activescrapeops_fake_user_agents_active==False:
             self.scrapeops_fake_user_agents_active = False
         else:
             self.scrapeops_fake_user_agents_active = True

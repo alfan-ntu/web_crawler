@@ -1,5 +1,7 @@
 import scrapy
 
+from ..items import AuthorItem
+
 
 class AuthorSpider(scrapy.Spider):
     name = "author"
@@ -13,17 +15,29 @@ class AuthorSpider(scrapy.Spider):
             next_author_url = response.urljoin(author)
             yield scrapy.Request(url=next_author_url, callback=self.parse_author)
         # follow the links and create further requests
-        # next_url = response.css('li.next a::attr(href)').get()
-        # next_url = response.urljoin(next_url)
-        # if next_url is not None:
-        #     yield scrapy.Request(url=next_url, callback=self.parse)
+        next_url = response.css('li.next a::attr(href)').get()
+        next_url = response.urljoin(next_url)
+        if next_url is not None:
+            yield scrapy.Request(url=next_url, callback=self.parse)
 
     def parse_author(self, response):
         def extract_with_css(query):
             return response.css(query).get().strip()
 
-        yield {
-            "name": extract_with_css('h3.author-title::text'),
-            "birthdate": extract_with_css('span.author-born-date::text'),
-            "bio": extract_with_css('div.author-description::text')
-        }
+        # Typical way to yield parsed objects in serial format
+        # yield {
+        #     "name": extract_with_css('h3.author-title::text'),
+        #     "birthdate": extract_with_css('span.author-born-date::text'),
+        #     "bio": extract_with_css('div.author-description::text')
+        # }
+        # Yield parsed content by item object
+        author = AuthorItem()
+        author['name'] = extract_with_css('h3.author-title::text')
+        author['birthdate'] = extract_with_css('span.author-born-date::text')
+        author['bio'] = extract_with_css('div.author-description::text')
+        yield author
+
+
+
+
+
