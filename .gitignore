@@ -3,3 +3,5 @@
 
 # Ignore Virtual Environment related files
 crawl_env
+/daily_journal.md
+/scrapy_notes.md
