@@ -15,10 +15,18 @@ NEWSPIDER_MODULE = "tutorial.spiders"
 # The following three macro definitions are added for Selenium
 SELENIUM_DRIVER_NAME = 'chrome'
 # SELENIUM_DRIVER_EXECUTABLE_PATH = r'C:\Users\maoyi\Work\Python_Projects\Python_Tutorial\web_crawler\sandbox\quotes-js-project\chromedriver'
-SELENIUM_DRIVER_ARGUMENTS=['--headless']
-
+# SELENIUM_DRIVER_ARGUMENTS=['--headless']
+SELENIUM_DRIVER_ARGUMENTS=[]
+# Enforce proxy rotation using ScrapeOps Proxy Service
+SCRAPEOPS_API_KEY = 'SCRAPEOPS_API_KEY'
+SCRAPEOPS_PROXY_ENABLED = True
+EXTENSIONS = {
+     'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
+}
+# scrapeops_scrapy_proxy_adk is enabled to utilize ScrapeOps rotating proxy service
 DOWNLOADER_MIDDLEWARES = {
-     'scrapy_selenium.SeleniumMiddleware': 800
+     'scrapy_selenium.SeleniumMiddleware': 800,
+     'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
      }
 
 
@@ -26,10 +34,13 @@ DOWNLOADER_MIDDLEWARES = {
 #USER_AGENT = "tutorial (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+# Websites like walmart.com prohibits any scraper except google. Set this parameter to False
+# in order to work around its anti-bot protection.
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+# Set this value to 1 temporarily due to the limitation from free ScrapeOps account
+CONCURRENT_REQUESTS = 1
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
