@@ -1,0 +1,5 @@
+# Ignore Pycharm IDE configuration
+.idea/
+
+# Ignore Virtual Environment related files
+crawl_env
