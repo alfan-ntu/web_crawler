@@ -16,6 +16,8 @@
             2) https://thepythonscrapyplaybook.com/freecodecamp-beginner-course/freecodecamp-scrapy-beginners-course-part-8-fake-headers-user-agents/#scrapeops-fake-user-agent-api
 
     Notes:
+            1) Formal description of middlewares.py, where the request is modified before actually being
+               sent to the web-server and the way scrapy handles the response
 
     ToDo's  :
         -

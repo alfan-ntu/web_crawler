@@ -1,4 +1,4 @@
-# Scrapy settings for tutorial project
+# Scrapy settings for house_rent_scrapper project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,43 +7,20 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = "tutorial"
+BOT_NAME = "house_rent_scrapper"
 
-SPIDER_MODULES = ["tutorial.spiders"]
-NEWSPIDER_MODULE = "tutorial.spiders"
-
-# The following three macro definitions are added for Selenium
-SELENIUM_DRIVER_NAME = 'chrome'
-# SELENIUM_DRIVER_EXECUTABLE_PATH = r'C:\Users\maoyi\Work\Python_Projects\Python_Tutorial\web_crawler\sandbox\quotes-js-project\chromedriver'
-SELENIUM_DRIVER_ARGUMENTS=['--headless']
-
-#
-# Enforce proxy rotation using ScrapeOps Proxy Service
-#
-SCRAPEOPS_API_KEY = '2bb9eaa3-b008-48df-98fa-6b175af37535'
-SCRAPEOPS_PROXY_ENABLED = True
-EXTENSIONS = {
-     'scrapeops_scrapy.extension.ScrapeOpsMonitor': 500,
-}
-
-# scrapeops_scrapy_proxy_adk is enabled to utilize ScrapeOps rotating proxy service
-DOWNLOADER_MIDDLEWARES = {
-     'scrapy_selenium.SeleniumMiddleware': 800,
-     'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
-     }
+SPIDER_MODULES = ["house_rent_scrapper.spiders"]
+NEWSPIDER_MODULE = "house_rent_scrapper.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = "tutorial (+http://www.yourdomain.com)"
+#USER_AGENT = "house_rent_scrapper (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-# Websites like walmart.com prohibits any scraper except google. Set this parameter to False
-# in order to work around its anti-bot protection.
-ROBOTSTXT_OBEY = False
+ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# Set this value to 1 temporarily due to the limitation from free ScrapeOps account
-CONCURRENT_REQUESTS = 1
+#CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -68,13 +45,13 @@ CONCURRENT_REQUESTS = 1
 # Enable or disable spider middlewares
 # See https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    "tutorial.middlewares.TutorialSpiderMiddleware": 543,
+#    "house_rent_scrapper.middlewares.HouseRentScrapperSpiderMiddleware": 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    "tutorial.middlewares.TutorialDownloaderMiddleware": 543,
+#    "house_rent_scrapper.middlewares.HouseRentScrapperDownloaderMiddleware": 543,
 #}
 
 # Enable or disable extensions
@@ -86,7 +63,7 @@ CONCURRENT_REQUESTS = 1
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    "tutorial.pipelines.TutorialPipeline": 300,
+#    "house_rent_scrapper.pipelines.HouseRentScrapperPipeline": 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)

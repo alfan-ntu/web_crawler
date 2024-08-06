@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Scrapy tutorial project preliminarily implemented">
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Included .gitignore file to change track list">
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/items.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/middlewares.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/pipelines.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/spiders/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/spiders/rentspider.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/office_rent.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/scrapy.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_office_rent_neihu_songshan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_office_rent_neihu_zhongshan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_rent_neihu_songshan.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/web_crawler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web_crawler.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/basic/basic_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic/basic_crawler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial/tutorial/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/tutorial/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tutorial/tutorial/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/tutorial/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial/tutorial/spiders/author.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/tutorial/spiders/author.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial/tutorial/spiders/quote.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,12 +30,25 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/pwdhidden" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
@@ -38,9 +64,10 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/crawl_env/Lib/site-packages/scrapy/utils/response.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
     &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/crawl_env/Lib/site-packages/scrapy_selenium/middlewares_orig.py&quot;
   }
 }</component>
@@ -50,7 +77,7 @@
       <recent name="C:\Users\maoyi\Work\Python_Projects\Python_Tutorial\web_crawler\basic" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.test">
     <configuration name="cmdline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="web_crawler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -72,8 +99,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="web_crawler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/test.py" />
+      <option name="PARAMETERS" value="sample.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.cmdline" />
       </list>
     </recent_temporary>
@@ -160,7 +209,21 @@
       <option name="project" value="LOCAL" />
       <updated>1705547539212</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Excluded .idea(PyCharm desktop settings) and crawl_env(Virtual environment settings)">
+      <created>1708667750298</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1708667750298</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Included .gitignore file to change track list">
+      <created>1708668889687</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1708668889687</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -197,7 +260,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="pwdhidden" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -225,6 +300,8 @@
     <MESSAGE value="Added reference to https://www.wikidata.org/wiki/Q2553325" />
     <MESSAGE value="Tutorial completed before implementing a stock price scraper" />
     <MESSAGE value="Scrapy tutorial project preliminarily implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scrapy tutorial project preliminarily implemented" />
+    <MESSAGE value="Excluded .idea(PyCharm desktop settings) and crawl_env(Virtual environment settings)" />
+    <MESSAGE value="Included .gitignore file to change track list" />
+    <option name="LAST_COMMIT_MESSAGE" value="Included .gitignore file to change track list" />
   </component>
 </project>

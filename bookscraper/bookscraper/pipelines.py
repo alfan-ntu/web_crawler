@@ -12,8 +12,11 @@
             1) https://youtu.be/mBoX_JCKZTE?si=NdyjlT7fLS1qAUec
             2) https://docs.scrapy.org/en/latest/topics/items.html
 
-    Notes: Remember to enable the pipeline routine by un-comment ITEM_PIPELINES
-           in settings.py
+    Notes:
+            1) Formal description of pipelines.py, where the item yielded by the spider get
+               processed
+            2) Remember to enable the pipeline routine by un-comment ITEM_PIPELINES
+               in settings.py
 
     ToDo's  :
         -

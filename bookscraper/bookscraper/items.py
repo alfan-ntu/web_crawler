@@ -12,6 +12,8 @@
             2) https://docs.scrapy.org/en/latest/topics/items.html
 
     Notes:
+            1) Formal description of items.py, a model for the extracted data. Spider's
+               parser extracts contents of each correspondent item from the response.
 
     ToDo's  :
         -
