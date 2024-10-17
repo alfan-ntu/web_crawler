@@ -48,7 +48,7 @@ SCRAPEOPS_NUM_RESULTS = 50
 # PROXY_PORT = '7000'
 #
 #  Or use ScrapeOps' proxy SDK
-SCRAPEOPS_PROXY_ENABLED = True
+SCRAPEOPS_PROXY_ENABLED = False
 SCRAPEOPS_PROXY_SETTINGS = {'country': 'us'}
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent;
@@ -94,7 +94,7 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
    # "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
    # "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
-   "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
+   # "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
    # "rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
    # "bookscraper.middlewares.MyProxyMiddleware": 350
 }

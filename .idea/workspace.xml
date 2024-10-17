@@ -1,26 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Included .gitignore file to change track list">
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/items.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/middlewares.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/pipelines.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/spiders/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/house_rent_scrapper/spiders/rentspider.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/office_rent.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/scrapy.cfg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_office_rent_neihu_songshan.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_office_rent_neihu_zhongshan.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/house_rent_scrapper/store_rent_neihu_songshan.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/web_crawler.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/web_crawler.iml" afterDir="false" />
+    <list default="true" id="543e8f31-3b3b-4a2a-88d9-9cf8dfb8a857" name="Default Changelist" comment="Added a new office_rent spider crawling office/store rent from Real-estate agent website">
+      <change afterPath="$PROJECT_DIR$/stock_price_scraper/scrapy.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/basic/basic_crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/basic/basic_crawler.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/middlewares.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/pipelines.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tutorial/tutorial/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/tutorial/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookscraper/bookscraper/spiders/bookspider.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tutorial/tutorial/spiders/quotes.py" beforeDir="false" afterPath="$PROJECT_DIR$/tutorial/tutorial/spiders/quotes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,8 +53,8 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/crawl_env/Lib/site-packages/scrapy/utils/response.py&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/indeed_scraper/main.py&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;Settings.Markdown&quot;,
     &quot;two.files.diff.last.used.file&quot;: &quot;C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/crawl_env/Lib/site-packages/scrapy_selenium/middlewares_orig.py&quot;
   }
 }</component>
@@ -77,7 +64,7 @@
       <recent name="C:\Users\maoyi\Work\Python_Projects\Python_Tutorial\web_crawler\basic" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.test">
+  <component name="RunManager" selected="Python.main">
     <configuration name="cmdline" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="web_crawler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,6 +79,27 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/crawl_env/Lib/site-packages/scrapy/cmdline.py" />
       <option name="PARAMETERS" value="crawl quotes --logfile quotes.log -O quotes.json" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="web_crawler" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/indeed_scraper" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indeed_scraper/main.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -120,8 +128,14 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.cmdline" />
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.test" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
         <item itemvalue="Python.test" />
         <item itemvalue="Python.cmdline" />
       </list>
@@ -223,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1708668889687</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added a new office_rent spider crawling office/store rent from Real-estate agent website">
+      <created>1722920113254</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722920113254</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -258,6 +279,31 @@
             </State>
           </value>
         </entry>
+        <entry key="54a908c7-a4f8-4432-af9a-d6ab7b324a29">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Users/maoyi/Work/Python_Projects/Python_Tutorial/web_crawler/house_rent_scrapper" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -280,6 +326,7 @@
     <option name="OPEN_GENERIC_TABS">
       <map>
         <entry key="34247db6-e648-4fda-b8fc-5fa954fce39d" value="TOOL_WINDOW" />
+        <entry key="54a908c7-a4f8-4432-af9a-d6ab7b324a29" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -302,6 +349,7 @@
     <MESSAGE value="Scrapy tutorial project preliminarily implemented" />
     <MESSAGE value="Excluded .idea(PyCharm desktop settings) and crawl_env(Virtual environment settings)" />
     <MESSAGE value="Included .gitignore file to change track list" />
-    <option name="LAST_COMMIT_MESSAGE" value="Included .gitignore file to change track list" />
+    <MESSAGE value="Added a new office_rent spider crawling office/store rent from Real-estate agent website" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a new office_rent spider crawling office/store rent from Real-estate agent website" />
   </component>
 </project>

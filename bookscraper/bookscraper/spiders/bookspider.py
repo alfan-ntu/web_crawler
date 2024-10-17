@@ -26,15 +26,14 @@ import random
 from urllib.parse import urlencode
 
 
-API_KEY = 'xxxxx-xxxx-xxxxx-xxxxx-xxxxxx'
-
-
 def get_proxy_url(url, enable_proxy=False):
+    API_KEY = '2bb9eaa3-b008-48df-98fa-6b175af37535'
     if enable_proxy:
         payload = {'api_key': API_KEY, 'url':url}
         proxy_url = 'https://proxy.scrapeops.io/v1/?' + urlencode(payload)
     else:
         proxy_url = url
+
     return proxy_url
 
 

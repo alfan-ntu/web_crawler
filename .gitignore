@@ -1,7 +1,20 @@
 # Ignore Pycharm IDE configuration
 .idea/
 
+
 # Ignore Virtual Environment related files
 crawl_env
 /daily_journal.md
 /scrapy_notes.md
+temp
+img
+
+house_rent_scrapper/house_rent_scrapper/__pycache__/*
+
+*.json
+*.log
+*.pyc
+*.html
+*.pyc
+
+/house_rent_scrapper/house_rent_scrapper/__pycache__
