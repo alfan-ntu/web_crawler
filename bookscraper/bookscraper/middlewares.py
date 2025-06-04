@@ -1,7 +1,8 @@
 """
-    Description: Custom functionality to process the responses that are sent to Spiders for
-                 processing and to process the requests and items that are generated from
-                 spiders
+    Description: Custom functionality to
+            1) process the responses that are sent to Spiders for processing
+            2) process the requests and items that are generated from spiders, such as manipulate the user agents,
+               browser headers.... before actually submitting the requests in Downloader engine of Scrapy
 
     Date: 2023/12/18
     Author:
@@ -18,6 +19,14 @@
     Notes:
             1) Formal description of middlewares.py, where the request is modified before actually being
                sent to the web-server and the way scrapy handles the response
+            2) Typically, there are two types of middlewares, one is Downloader middleware and the other
+               one is Spider middleware.
+               Visit the architectural diagram in https://docs.scrapy.org/en/latest/_images/scrapy_architecture_02.png
+               and find the purple square boxes.
+            3) If new middlewares.py is created, REMEMBER TO ADD AND ENABLE IT IN settings.py. Item pipelines program
+               likewise.
+            4) Two customized middlewares are implemented in this program. The first is ScrapeOpsFakeUserAgentMiddleware and
+               the second one is ScrapeOpsFakeBrowserHeaderAgent
 
     ToDo's  :
         -
@@ -129,8 +138,9 @@ class BookscraperDownloaderMiddleware:
 from urllib.parse import urlencode
 from random import randint
 import requests
-
-
+#
+# Customized class to get user-agents from ScrapeOps and attach them to requests
+#
 class ScrapeOpsFakeUserAgentMiddleware:
 
     @classmethod
@@ -191,7 +201,7 @@ class ScrapeOpsFakeUserAgentMiddleware:
         configurations in settings.py
         :return:
         """
-        if self.scrapeops_api_key is None or self.scrapeops_api_key=='' or self.scrapeops_fake_user_agents_activescrapeops_fake_user_agents_active==False:
+        if self.scrapeops_api_key is None or self.scrapeops_api_key=='' or self.scrapeops_fake_user_agents_active==False:
             self.scrapeops_fake_user_agents_active = False
         else:
             self.scrapeops_fake_user_agents_active = True
@@ -210,8 +220,9 @@ class ScrapeOpsFakeUserAgentMiddleware:
         # For debugging purpose
         # print("********** NEW HEADER ATTACHED **********")
         # print(request.headers['User-Agent'])
-
-
+#
+# Customized class to get user-agents from ScrapeOps and attach them to requests
+#
 class ScrapeOpsFakeBrowseHeaderAgentMiddleware:
 
     @classmethod
@@ -275,18 +286,32 @@ class ScrapeOpsFakeBrowseHeaderAgentMiddleware:
         """
         random_browser_header = self._get_random_browser_header()
 
-        request.headers['accept-language'] = random_browser_header['accept-language']
-        request.headers['sec-fetch-user'] = random_browser_header['sec-fetch-user']
-        request.headers['sec-fetch-mod'] = random_browser_header['sec-fetch-mod']
-        request.headers['sec-fetch-site'] = random_browser_header['sec-fetch-site']
-        request.headers['sec-ch-ua-platform'] = random_browser_header['sec-ch-ua-platform']
-        request.headers['sec-ch-ua-mobile'] = random_browser_header['sec-ch-ua-mobile']
-        request.headers['sec-ch-ua'] = random_browser_header['sec-ch-ua']
-        request.headers['accept'] = random_browser_header['accept']
-        request.headers['user-agent'] = random_browser_header['user-agent']
-        request.headers['upgrade-insecure-requests'] = random_browser_header['upgrade-insecure-requests']
+        # request.headers['accept-language'] = random_browser_header['accept-language']
+        # request.headers['sec-fetch-user'] = random_browser_header['sec-fetch-user']
+        # request.headers['sec-fetch-mode'] = random_browser_header['sec-fetch-mode']
+        # request.headers['sec-fetch-site'] = random_browser_header['sec-fetch-site']
+        # request.headers['sec-ch-ua-platform'] = random_browser_header['sec-ch-ua-platform']
+        # request.headers['sec-ch-ua-mobile'] = random_browser_header['sec-ch-ua-mobile']
+        # request.headers['sec-ch-ua'] = random_browser_header['sec-ch-ua']
+        # request.headers['accept'] = random_browser_header['accept']
+        # request.headers['user-agent'] = random_browser_header['user-agent']
+        # request.headers['upgrade-insecure-requests'] = random_browser_header['upgrade-insecure-requests']
+        #
+        # Hack dealing with absence of features missing of the fake headers from ScrapeOps
+        #
+        request.headers['accept-language'] = random_browser_header.get('accept-language', '')
+        request.headers['sec-fetch-user'] = random_browser_header.get('sec-fetch-user', '')
+        request.headers['sec-fetch-mode'] = random_browser_header.get('sec-fetch-mode', '')
+        request.headers['sec-fetch-site'] = random_browser_header.get('sec-fetch-site', '')
+        request.headers['sec-ch-ua-platform'] = random_browser_header.get('sec-ch-ua-platform', '')
+        request.headers['sec-ch-ua-mobile'] = random_browser_header.get('sec-ch-ua-mobile', '')
+        request.headers['sec-ch-ua'] = random_browser_header.get('sec-ch-ua', '')
+        request.headers['accept'] = random_browser_header.get('accept', '')
+        request.headers['user-agent'] = random_browser_header.get('user-agent', '')
+        request.headers['upgrade-insecure-requests'] = random_browser_header.get('upgrade-insecure-requests', '')
 
-
+        print("###### NEW HEADER ATTACHED ######")
+        print(request.headers)
 #
 # Class MyProxyMiddleware is necessary only when we need to rotate the proxies to change spoof the website
 # with changing IP address via proxy servers, e.g. smartproxy.com. No need to comment out this class

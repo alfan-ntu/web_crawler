@@ -35,11 +35,16 @@ class BookscraperPipeline:
         :param spider:
         :return:
 
-        Note: If the processing is not too complicated, items.py can do it as well
+        Note:
+            1. If the processing is not too complicated, items.py can do it as well
+            2. Key purposes of pipelines.py include:
+                2.1. Data Validation and Cleaning
+                2.2. Data Transformation
+                2.3. Data Storage
         '''
         adapter = ItemAdapter(item)
         #
-        # Strip all leading and trailing whitespaces from strings
+        # Strip all leading and trailing whitespaces from strings if it is not a 'description' item
         #
         field_names = adapter.field_names()
         for field_name in field_names:
@@ -66,6 +71,7 @@ class BookscraperPipeline:
         # Extract numbers from the in stock strings
         # (Converting the number string to integer before storing it to database)
         # Raw data looks like: "availability": "In stock (14 available)"
+        # Use split('(') to breakdown the original string to two parts and extract the number part from the second half
         #
         availability_string = adapter.get('availability')
         split_string_array = availability_string.split('(')
@@ -82,7 +88,8 @@ class BookscraperPipeline:
         adapter['num_reviews'] = int(num_review_string)
         #
         # Extract number of stars string from the book details to correspondent
-        # integers
+        # integers.
+        # Raw data looks like, "stars": "star-rating Five"
         #
         stars_string = adapter.get('stars')
         x = stars_string.split(' ')
@@ -100,7 +107,7 @@ class BookscraperPipeline:
                 number = 5
             case _:
                 number = 0
-        adapter['num_reviews'] = number
+        adapter['stars'] = number
 
         return item
 
@@ -108,7 +115,7 @@ class BookscraperPipeline:
 #
 # Database access section. Intended to skip this for the time being.
 # import mysql.connector
-
+#
 # Associated with Part 7: Saving Data to File and Database in the tutorial
 # class SaveToMySQLPipeline:
 #
@@ -199,6 +206,7 @@ class BookscraperPipeline:
 #         return item
 #
 #     def close_spider(self, spider):
-#         # housekeeping, close cursor & connection to database
+          # An event handler called when the spider is closed
+          # housekeeping, close cursor & connection to database
 #         self.cur.close()
 #         self.conn.close()

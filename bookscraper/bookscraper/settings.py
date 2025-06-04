@@ -94,7 +94,7 @@ ROBOTSTXT_OBEY = True
 DOWNLOADER_MIDDLEWARES = {
    # "bookscraper.middlewares.BookscraperDownloaderMiddleware": 543,
    # "bookscraper.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
-   # "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
+   "bookscraper.middlewares.ScrapeOpsFakeBrowseHeaderAgentMiddleware": 400,
    # "rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
    # "bookscraper.middlewares.MyProxyMiddleware": 350
 }

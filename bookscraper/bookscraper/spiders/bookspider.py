@@ -21,7 +21,11 @@
         -
 """
 import scrapy
+
+
+# Import BookItem class from items.py
 from ..items import BookItem
+
 import random
 from urllib.parse import urlencode
 
@@ -47,8 +51,8 @@ class BookspiderSpider(scrapy.Spider):
     # crawls the urls within this list
     start_urls = ["https://books.toscrape.com"]
     #
-    # add a customized setting specific to this spider; this is another way of configuration
-    # compared to that setting specified in settings.py
+    # add a customized setting specific to this spider; FEEDS configures the output format
+    # this is another way of configuration compared to that setting specified in settings.py
     #
     # custom_settings = {
     #     'FEEDS': {
@@ -73,7 +77,7 @@ class BookspiderSpider(scrapy.Spider):
         worry if the very first request is blocked by the target server
         :return:
         """
-        # arrange proxy and register callback parse function on receiving the response
+        # set a starting URL, arrange proxy and register callback parse function on receiving the response
         yield scrapy.Request(url=get_proxy_url(self.start_urls[0]), callback=self.parse)
 
     def parse(self, response):
@@ -83,12 +87,16 @@ class BookspiderSpider(scrapy.Spider):
         :param response:
         :return:
         """
-        # Use css selector to select product information of books
+        # Use css selector to select product information of books;
+        # Each book is a line item described as
+        #   <article class="product_pod">
+        #   ...
+        #   </article>
         # We may use the interactive environment in 'Scrapy shell' to experiment the
         # CSS selector before actually writing code here
         books = response.css("article.product_pod")
         #
-        # Extract book information one book by another within the response page
+        # Extract book information one book by another WITHIN the response page
         #
         for book in books:
             # go deeper to details of each book
@@ -98,9 +106,13 @@ class BookspiderSpider(scrapy.Spider):
                 book_url = 'https://books.toscrape.com/catalogue/' + relative_url
             else:
                 book_url = 'https://books.toscrape.com/' + relative_url
+            #
             # (1) submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
             # if more complicated ways to deal with dynamic user-agent information in middlewares.py
             # (2) apply rotating proxy servers by uncomment meta={...}
+            # (3) the callback function self.parse_book_page() is registered so that it'll be called when the
+            #     server returns the book details HTML response
+            #
             book_url = get_proxy_url(book_url, False)
             yield response.follow(book_url,
                                   callback=self.parse_book_page,
@@ -109,6 +121,7 @@ class BookspiderSpider(scrapy.Spider):
                                   )
         #
         # Process the next page button to continue the crawling until no more pages left
+        # There is no 'Next' button in the last page and the css selector fails to find 'next_page'
         #
         next_page = response.css('li.next a').attrib['href']
         if next_page is not None:
@@ -118,9 +131,10 @@ class BookspiderSpider(scrapy.Spider):
                 next_page_url = 'https://books.toscrape.com/' + next_page
             # response.follow just returns a new Request instance with/without a spoofed user-agent
             print(f'Visit page: {next_page_url}')
-            # (1) submit requests with callback specified and spoofed user-agent; no need to add 'User-Agent' section
-            # if more complicated ways to deal with dynamic user-agent information in middlewares.py
-            # (2) apply rotating proxy servers by uncomment meta={...}
+            # (1) submit requests with callback function self.parse specified
+            # (2) spoofed user-agent; no need to add 'User-Agent' section
+            #     if more complicated ways to deal with dynamic user-agent information in middlewares.py
+            # (3) apply rotating proxy servers by uncomment meta={...}
             next_page_url = get_proxy_url(next_page_url, False)
             yield response.follow(next_page_url,
                                   callback=self.parse,
@@ -135,15 +149,26 @@ class BookspiderSpider(scrapy.Spider):
         :param response:
         :return: book details record object
         """
-        # print(f'Response: {response}; user-agent: {response.request.headers["User-Agent"]}')
-        print(f'Response: {response}')
-        # Fetch the table in the book details page
+        # Fetch the table in the book details page. Notice the differences between response.css("table tr")
+        # and response.css("table tr").getall()
         table_rows = response.css("table tr")
-        # Retrieve the book details and return the information of interest to the caller
-        # The following selector statements can be collected from experiments in Scrapy shell
+        #
+        # Retrieve the book details and return the information of interest to the caller through a BookItem() class instance
+        # The following selector statements can be collected from experiments in Scrapy shell. After 2024, ChatGPT can easily
+        # compose the css selector statement if we simply copy and paste the HTML part and ask ChatGPT to generate the required
+        # css selector code
+        # 1) Each piece of book item information can be retrieved by using css selector, xpath selector,... etc. and stored in the
+        #    dictionary
+        # 2) In the Scrapy framework, dictionary-style access is preferred and recommended instead of Python standard way to access
+        #    the class attribute. E.g. book_item['url'] = response.url better than book_item.url = response.url because Scrapy
+        #    defines scrapy.Field class which accepts a dictionary argument, dict[str, Any]
+        #
         book_item = BookItem()
         book_item['url'] = response.url
+        # '.class_name' in the css selector string means selecting elements by their class_name attribute
+        # '#id_name' in the css selector string means selecting elements by their id_name attribute
         book_item['title'] = response.css('.product_main h1::text').get()
+        # otherwise selecting by their HTML tag name
         book_item['upc'] = table_rows[0].css('td ::text').get()
         book_item['product_type'] = table_rows[1].css('td ::text').get()
         book_item['price_excl_tax'] = table_rows[2].css('td ::text').get()
@@ -152,9 +177,13 @@ class BookspiderSpider(scrapy.Spider):
         book_item['availability'] = table_rows[5].css('td ::text').get()
         book_item['num_reviews'] = table_rows[6].css('td ::text').get()
         book_item['stars'] = response.css("p.star-rating").attrib['class']
+        # //ul ... means anywhere in the HTML response with HTML tag 'ul'
+        # [@class='breadcrumb'] filters to only <ul> elements where the class attribute equals "breadcrumb"
+        # /li ... locate the tag 'li' in the HTML response
+        # [@class='active'] filters to only <li> elements where the class attribute equals "active"
         book_item['category'] = response.xpath("//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li[1]/a/text()").get()
         book_item['price'] = response.css('p.price_color ::text').get()
         book_item['description'] = response.xpath("//div[@id='product_description']/following-sibling::p/text()").get()
-        # Return a book_item object which is defined in items.py
+        # Yield a book_item object which is defined in items.py
         yield book_item
 
