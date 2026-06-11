@@ -33,7 +33,20 @@ class RentspiderSpider(scrapy.Spider):
     name = "rentspider"
     allowed_domains = ["www.sinyi.com.tw"]
     # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/114-104-zip/100-300-area/office-use/index.html"]
-    start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/114-105-zip/100-up-area/store-use/index.html"]
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/114-105-zip/100-up-area/store-use/index.html"]
+    #  中山區 店面 60 坪以上
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/104-zip/60-up-area/store-use/index.html"]
+    #  中山區 店面, 辦公室 100~500 坪
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/104-zip/100-500-area/store-office-use/index.html"]
+    #  內湖、松山區 100 坪以上
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/105-114-zip/100-up-area/store-use/index.html"]
+    # 孔孟文化-台北民權西路
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Taipei-city/104-103-zip/40-up-area/office-use/index.html"]
+    # 孔孟文化-台中北區
+    start_urls = ["https://www.sinyi.com.tw/rent/list/Taichung-city/404-zip/office-use/index.html"]
+    # 孔孟文化-高雄苓雅、新興區
+    # start_urls = ["https://www.sinyi.com.tw/rent/list/Kaohsiung-city/800-802-zip/office-use/index.html"]
+
     base_url = start_urls[0].rsplit("/", 1)[0] + "/"
     next_page_url = ""
     total_result_count = 0
